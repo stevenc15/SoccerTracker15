@@ -88,7 +88,8 @@ This file configures the proper setup for creating separate containers for front
             timeout: 5s
             retries: 3
 
-Commands: 
+How to run docker container: 
+    download docker app, have docker daemon open and running
 
     Build Docker Images: 
         docker-compose build

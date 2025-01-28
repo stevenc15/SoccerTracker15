@@ -1,4 +1,3 @@
-version: '3'
 services:
   soccer-tracker-app:
     build: .

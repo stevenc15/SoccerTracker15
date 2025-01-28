@@ -1,33 +1,30 @@
-#Node.js base image
-FROM node:18-bullseye
+#base image
+FROM nikolaik/python-nodejs:python3.12-nodejs18
 
-#python, pip, venv
-RUN apt-get update && \
-apt-get install -y python3 python3-pip python3-venv && \
-rm -rf /var/lib/apt/lists/*
-
-#working directory for application
+#set working directory
 WORKDIR /app
 
-#package.json and package-lock.json
+#copy node js dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install 
 
-#copy rest of code
+#copy application code
 COPY . .
 
-#python virtual environment
-RUN python3 -m venv /app/venv
+#set up virtual environment and upgrade pip
+RUN python3.12 -m venv /app/virtual_e
+    
+RUN /app/virtual_e/bin/pip install --upgrade pip
 
-# Copy .env file to the container
+#copy backend .env file
 COPY backend/backend_details.env /app/backend/backend_details.env
 
-#copy python dependencies
-COPY backend/v_e_utils/requirements.txt /app/backend/v_e_utils/requirements_original.txt
-RUN /app/venv/bin/pip install -r /app/backend/v_e_utils/requirements_original.txt
+#Installing python dependencies
+COPY backend/v_e_utils/requirements_original.txt /app/backend/v_e_utils/requirements.txt
+RUN /app/virtual_e/bin/pip install -r /app/backend/v_e_utils/requirements.txt
 
-#port
+#expose ports
 EXPOSE 3001 5001
 
-#start app
+#starting the application
 CMD ["sh", "-c", "npm start & node backend/server.js"]
