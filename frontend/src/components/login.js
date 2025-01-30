@@ -39,6 +39,16 @@ function Login() {
     const [codeMessage, setCodeMessage] = useState('');
     const [changePasswordMessage, setChangePasswordMessage]= useState('');
 
+    const closeChangePassword = () => {
+        setShowChangePassword(false);
+    }
+    const closeEnterEmail = () => {
+        setShowForgotPassword(false);
+    }
+    const closeEnterPRCode = () => {
+        setShowEnterPRCode(false);
+    }
+
     //function to popup box to enter email for reset password
     const GenerateForgotPassword = () => {
         setShowForgotPassword(true);
@@ -167,8 +177,10 @@ function Login() {
 
     //make webpage
     return (
-        <div className='login-container'>
+        <div className='login-container2'>
+            
             <div className={`overlay ${overlayActive ? 'active' : ''}`}></div>
+
             {/* Login field, forgot password option */}
             <form className="login-form" onSubmit={doLogin}>
                 <input
@@ -188,7 +200,6 @@ function Login() {
 
             <Button className="forgot-password-button"  onClick={GenerateForgotPassword}>Forgot Password</Button>
             
-
             {/* email enter for forgot password code */}
             {showForgotPassword && (
                 <div className="popup-container">
@@ -198,6 +209,7 @@ function Login() {
                     email={email}
                     setEmail={setEmail}
                     message={emailMessage}
+                    onClose={closeEnterEmail}
                     />
                 </div>
             )}
@@ -211,6 +223,7 @@ function Login() {
                     code={code} 
                     setCode={setCode} 
                     message={codeMessage}
+                    onClose={closeEnterPRCode}
                     />
                 </div>
             )}
@@ -228,6 +241,7 @@ function Login() {
                     confirmPassword={confirmPassword}
                     setConfirmPassword={setConfirmPassword}
                     message={changePasswordMessage}
+                    onClose={closeChangePassword}
                     />
                 </div>
             )}

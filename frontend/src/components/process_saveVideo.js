@@ -27,40 +27,6 @@ const Process_saveVideo = ({setVideoURL, setOutputVideo, outputVideo}) =>{
   const [message, setMessage] = useState('');
   const [progress, setProgress] = useState(0);
 
-  /*
-  useEffect(()=>{
-
-    const socket = new WebSocket('ws://localhost:5001');
-
-    socket.onopen = () => {
-      console.log('websocket connection established2')
-    };
-
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.progress!==undefined){
-        setProgress(data.progress);
-      } else if(data.message==='Processing complete'){
-        console.log('processing complete');
-        setMessage('processing complete');
-        setIsProcessing(false);
-      }
-    };
-    socket.onerror=(error)=>{
-      console.error('WebSocket Error:', error);
-    }
-
-    socket.onclose=()=>{
-      console.log('WebSocket connection closed2');
-    }
-
-    return () => {
-      socket.close();
-    }
-  }, []
-);
-
-*/
 
   //FUNCTION TO HANDLE DROPPING/UPLOADING FILE
   const handleDrop = (acceptedFiles) => { 
@@ -147,7 +113,7 @@ const Process_saveVideo = ({setVideoURL, setOutputVideo, outputVideo}) =>{
 
     <div>
         <Upload onDrop={handleDrop} />
-        {inputVideo && <p className='action-title'>Uploaded file: {inputVideo.name}</p>}            
+        {inputVideo && <p className='action-title'>Uploaded file: {inputVideo.name} (Once video is processed, it can be found at the bottom of the page)</p>}            
         <button onClick={handleProcessVideo} disabled={!inputVideo || isProcessing} className='process-button'>Start Processing</button>           
         {isProcessing && (
           <div className='processing-container'>
@@ -155,30 +121,6 @@ const Process_saveVideo = ({setVideoURL, setOutputVideo, outputVideo}) =>{
           <CircularProgress/>
           </div>
         )}
-
-        {outputVideo && !isProcessing &&(
-          <div>
-          <p className='processing-title'>Finished Processing</p>
-          </div>
-        )}
-
-        {/*  
-        {isProcessing && (
-        <div>
-          <p>Progress: {Math.round(progress)}%</p>
-          <div style={{ width: '100%', background: '#f3f3f3', borderRadius: '5px' }}>
-            <div
-              style={{
-                width: `${progress}%`,
-                height: '20px',
-                background: '#4caf50',
-                borderRadius: '5px',
-              }}
-            />
-          </div>
-        </div>
-      )}
-      */}
 
     </div>
     

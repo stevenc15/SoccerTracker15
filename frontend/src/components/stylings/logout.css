@@ -6,7 +6,7 @@
     background-color: #000000; /* Green button color */
     color: rgb(255, 255, 255);
     border: none;
-    border-radius: 85%;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     font-family:'Helvetica Neue' !important;

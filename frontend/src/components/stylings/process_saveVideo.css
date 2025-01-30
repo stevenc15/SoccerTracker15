@@ -54,10 +54,21 @@
   font-size: 1em;
   color: #000000;
 }
+
+  /* Section title styling */
+  .processing-title {
+    margin-top: 3.7px;
+    font-size: 1.3em;
+    color: #000000;
+  }
 /* Section title styling */
-.processing-title {
-  font-size: 1.2em;
-  color: #000000;
+.finished-title {
+    margin-top: 3.3px;
+    font-size: 1.2em;
+    background-color: #000000; /* Light gray background */
+    color: #ffffff; /* Dark text */
+    padding: 4px 8px; /* Spacing inside the rectangle */
+    border-radius: 8px; /* Rounded corners */
 }
   .processing-container {
     display: flex;

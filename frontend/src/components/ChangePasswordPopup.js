@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ChangePasswordPopup({ onSubmit, username, setUsername, newPassword, setNewPassword, confirmPassword, setConfirmPassword, message }) {
+function ChangePasswordPopup({ onSubmit, username, setUsername, newPassword, setNewPassword, confirmPassword, setConfirmPassword, message, onClose }) {
   return (
     <div className="popup-overlay">
       <div className="popup">
@@ -32,9 +32,11 @@ function ChangePasswordPopup({ onSubmit, username, setUsername, newPassword, set
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
             />
-            <button type='button' onClick={onSubmit}>
+            <button type='button' onClick={onSubmit} className='submit-button'>
                 Submit
             </button>
+            <div className='spacer'></div>
+            <button type='button' onClick={onClose} className='submit-button2'>Close</button>
             {message && <p className="popup-message">{message}</p>}
         </div>
     </div>
