@@ -17,6 +17,24 @@ body {
     margin: 0;
 }
 
+.logoForRegister {
+    width: 170px;
+    height: auto;
+    /*margin-bottom: 20px;*/
+    margin-left: 80px; 
+    /*display: block;*/
+}
+
+/* Left section for title and content */
+.logo-containe {
+    display: flex;
+    /*flex-direction: column;
+    /*justify-content: center; /* Vertically center the content */
+    align-items: flex-start;
+    /*width: 30%; /* Left side takes up half of the screen */
+    height: 80%; /* Allow the title to take full height of the container */
+    /*right: 250%; /* Space on the left side */
+}
 /* Container for the entire Register page */
 .register-page-container {
     display: flex;

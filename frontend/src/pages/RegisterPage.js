@@ -2,10 +2,15 @@ import React from 'react';
 import Register from '../components/register';
 import { Link } from 'react-router-dom'; // Ensure you import Link from react-router-dom
 import './stylings/RegisterPage.css'; // Import the CSS file for RegisterPage styles
+import squareLogo from './SquareLogo.png';
 
 const RegisterPage = () => {
     return (
         <div>
+        <div className="logo-containe">                
+                <img src={squareLogo} alt="TrackMate Logo" className="logoForRegister"/>
+            </div>
+        <div>            
             <Register />
             <div className="register-page-switch-login">
                 <p className='register-page-title'>Already have an account?</p>
@@ -13,6 +18,7 @@ const RegisterPage = () => {
                     <button className="switch-to-login-button">Switch to Login</button>
                 </Link>
             </div>
+        </div>
         </div>
     );
 };

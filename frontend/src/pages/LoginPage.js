@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import Login from '../components/login';
 import './stylings/LoginPage.css'; // Import the CSS file
 import {Box, Button, Typography} from '@mui/material';
+import squareLogo from './SquareLogo.png';
 
 //log in title, and login component
 import {useLocation} from 'react-router-dom';
@@ -13,11 +14,16 @@ useEffect(()=>{
 }, [location])
 
     return (
+        <div>
+        <div className="logo-contain">                
+                <img src={squareLogo} alt="TrackMate Logo" className="logoForLogin"/>
+        </div>
         <div className="login-container">
-            <div className="login-card">
-                <h2 className="login-title">Log in</h2>
+            {/*<div className="login-card">*/}
+                <h2 className="login-titl">Log in</h2>
                 <Login />
-            </div>
+            {/*</div>*/}
+        </div>
         </div>
     );
 };

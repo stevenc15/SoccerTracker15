@@ -138,9 +138,9 @@ const [progress, setProgress] = useState(0);
           </video>
 
           <button onClick={handleDownload} className="download-button">
-            Download processed video
+            Download Processed Video
           </button>
-          <button onClick={()=>setPopupVisible(true)} className='save-button'>
+          <button onClick={()=>setPopupVisible(true)} className='sav-button'>
             Save Processed Video
           </button>
           {popupVisible && (
@@ -152,6 +152,7 @@ const [progress, setProgress] = useState(0);
             value={videoName}
             onChange={(e)=>setVideoName(e.target.value)}
             placeholder='Video Name'
+            className='video-name-input'
             />
             <button onClick={callSaveVideo} className='saves-button'>Save</button>
             <button onClick={()=>{setPopupVisible(false); setMessage('')}} className='cancel-button'>Cancel</button>
