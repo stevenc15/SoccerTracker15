@@ -1,12 +1,12 @@
 //HomePage.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './stylings/HomePage.css';
+//import './stylings/HomePage.css';
 import Process_saveVideo from '../components/process_saveVideo';
 
 import Logout from '../components/logout';
-import {Box, Button, Typography} from '@mui/material';
-import {useUser} from '../components/userContext';
+//import {Box, Button, Typography} from '@mui/material';
+import {useApp} from '../components/appContext';
 import {getCookie} from '../components/cookieUtils';
 import {useNavigate} from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const HomePage = () => {
     const navigate = useNavigate(); 
     const isDisabled = process.env.REACT_APP_USE_CLOUD==='true';
 //grab user ID
-const {setUserId} = useUser();
+const {setUserId} = useApp();
 const storeUserId = getCookie('userId');
 const storedToken = getCookie('token');
 useEffect( ()=> {
@@ -89,85 +89,103 @@ const [progress, setProgress] = useState(0);
   };
     //MAKE PAGE
     return ( 
-      <div className="page-container">
-    {/* Alert Message for Cloud Status */}
-    <div className='cloud-status'>
+      <div className="min-h-screen bg-black text-white px-4 py-8">
+    {/* Alert Message for Cloud Status 
+    <div className={`
+      text-center py-2 
+      ${!isDisabled ? 'bg-red-600' : 'bg-green-600'}
+    `}>
       {!isDisabled ? "ALERT: Cloud Storage is not active" : "ALERT: Cloud Storage is active"}
     </div>
-
+      */}
     {/* Header Section */}
-    <header className='header'>
-      <h1 className='app-title'>Track Videos</h1>
-    </header> 
+    <div className='flex justify-between items-center mb-8'>
+      {/*<h1 className='text-4xl font-bold'>TrackMate</h1>*/}
+      <Logout />
+    </div> 
 
-    <div>
-    <Logout />
-    </div>
-      <div>
+      {/*
+      <div className="mb-8 text-center">
         <Link to='/video'>
-          <button disabled={!isDisabled} className="saved-videos-button">Cloud-Saved Videos</button>
+          <button disabled={!isDisabled} className={`
+            px-6 py-3 rounded-lg 
+            ${isDisabled 
+              ? 'bg-white text-black hover:bg-gray-200' 
+              : 'bg-gray-800 text-gray-500 cursor-not-allowed'}
+            transition-colors
+          `}>Cloud-Saved Videos</button>
         </Link>
       </div>
-    <main>   
+
+      */}
+
+    <main className="max-w-4xl mx-auto">   
       {/* Video Upload Section */}
-      <h2 className='action-title'>Upload Video Below</h2>
+      <h2 className='text-2xl font-semibold text-center mb-6'>Upload Video Below</h2>
+
       <Process_saveVideo 
         setVideoURL={setVideoURL} 
         setOutputVideo={setOutputVideo}
         outputVideo={outputVideo}
+        videoURL={videoURL}
       />
-
-      {/* Video Preview Section */}
-      {videoURL && ( 
-        <div> 
-          <h3 className='processing-title'>Input Video</h3> 
-          <video width="640" height="360" controls> 
-            <source src={videoURL} type="video/mp4" /> 
-            Your browser does not support the video tag. 
-          </video>
-        </div>
-      )}
 
       {/* Processed Video Section */}
       {outputVideo && ( 
-        <div> 
-          <h3 className='processing-title'>Processed Video</h3> 
-          <video width="640" height="360" controls> 
-            <source src={outputVideo} type="video/mp4" /> 
-            Your browser does not support the video tag. 
-          </video>
+        <div className="space-y-6"> 
+          <h3 className="text-xl font-medium text-center">Processed Video</h3>
+          <div className="bg-gray-900 rounded-xl overflow-hidden shadow-lg"> 
+            <video className="w-full h-full object-contain" controls> 
+              <source src={outputVideo} type="video/mp4" /> 
+              Your browser does not support the video tag. 
+            </video>
+          </div>
 
-          <button onClick={handleDownload} className="download-button">
-            Download Processed Video
-          </button>
-          <button onClick={()=>setPopupVisible(true)} className='sav-button'>
-            Save Processed Video
-          </button>
+          <div className="flex justify-center space-x-4">
+            <button onClick={handleDownload} className="px-6 py-3 bg-white text-black rounded-lg hover:bg-gray-200 transition-colors">
+              Download Processed Video
+            </button>
+            {/*
+            <button onClick={()=>setPopupVisible(true)} className="px-6 py-3 bg-white text-black rounded-lg hover:bg-gray-200 transition-colors">
+              Save Processed Video
+            </button>*/}
+          </div>
+
           {popupVisible && (
-          <div>
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md">
+              <div className="bg-gray-900 rounded-xl shadow-2xl max-w-md w-full p-8 relative">
+              <button 
+                  onClick={() => {setPopupVisible(false); setMessage('')}}
+                  className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+                >
+                  Close
+                </button>
 
-            <h3 className='video-name'>Enter Video Name</h3>
-            <input 
-            type='text'
-            value={videoName}
-            onChange={(e)=>setVideoName(e.target.value)}
-            placeholder='Video Name'
-            className='video-name-input'
-            />
-            <button onClick={callSaveVideo} className='saves-button'>Save</button>
-            <button onClick={()=>{setPopupVisible(false); setMessage('')}} className='cancel-button'>Cancel</button>
+                <h3 className="text-2xl font-bold text-white mb-6 text-center">Enter Video Name</h3>
+                <input 
+                  type='text'
+                  value={videoName}
+                  onChange={(e)=>setVideoName(e.target.value)}
+                  placeholder='Video Name'
+                  className="w-full p-4 bg-gray-800 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-white outline-none mb-4"
+                />
+              <div className="flex space-x-4">
+            <button onClick={callSaveVideo} className="w-full py-4 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition-colors">Save</button>
+            
+            <button onClick={()=>{setPopupVisible(false); setMessage('')}} className="w-full py-4 bg-gray-800 text-white rounded-lg font-medium hover:bg-gray-700 transition-colors">Cancel</button>
+            </div>
+            {message && <p className='message'>{message}</p>}
+          </div>
           </div>
         )}
-
-        {message && <p className='message'>{message}</p>}
-        </div>
+       </div>
+        
       )}
-
-      {/* Start Processing and Saved Videos Button */}
       
     </main> 
   </div>
     );
+
   }
 
   export default HomePage; 
