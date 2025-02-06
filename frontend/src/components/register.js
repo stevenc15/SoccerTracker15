@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import './stylings/register.css';
+//import './stylings/register.css';
 import {useNavigate} from 'react-router-dom';
+import {useApp} from '../components/appContext.js';
 
 const Register = () => {
 
@@ -8,6 +9,7 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const {setCurrentPage} = useApp();
 
     //v code usestate
     const [verificationCode, setVerificationCode ]= useState('');
@@ -130,69 +132,85 @@ const Register = () => {
     //make webpage
   return (
 
-    <div className="register-container">
+    <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
     {/* Add the overlay with conditional active class */}
-    <div className={`overlay ${overlayActive ? 'active' : ''}`}></div>
-
+    <div className='w-full max-w-md'>
     {/* Headings */}
-    <h2 className="register-title">Register</h2>
+    <h2 className="text-4xl font-bold text-center mb-6">Register</h2>
 
     {/* input section */}
-    <form onSubmit={callRegister} className="register-form">
+    <form onSubmit={callRegister} className="space-y-4">
         
          {/* Username */}
         <input 
             type="text"
-            className={`register-input ${errorMessage ? 'error' : ''}`}
+            className={`w-full p-4 bg-gray-900 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-white outline-none 
+            ${errorMessage ? 'border-2 border-red-500' : ''}`}
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
         />
 
         {/* Password */}
         <input
             type="password"
-            className={`register-input ${errorMessage ? 'error' : ''}`}
+            className={`w-full p-4 bg-gray-900 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-white outline-none
+                ${errorMessage ? 'border-2 border-red-500' : ''}`}
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
         />
 
         {/* Email */}
         <input
             type="email"
-            className={`register-input ${errorMessage ? 'error' : ''}`}
+            className={`w-full p-4 bg-gray-900 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-white outline-none
+                ${errorMessage ? 'border-2 border-red-500' : ''}`}
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
         />
 
         {/* Submit button */}
-        <button type="submit" className="register-butto">Submit</button>
+        <button type="submit" className="w-full py-4 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition-colors mt-2">Submit</button>
     </form>
 
     {/* Display message */}
-    <p className={`error-message ${showVerificationPopup ? 'verification-popup-error' : ''}`}>{errorMessage}</p>
+    <p className='text-red-400 text-center text-sm mt-4'>{errorMessage}</p>
 
     {/* Enter email verification code */}
     {showVerificationPopup && (
-        <div className={`verification-popup ${overlayActive ? 'active' : ''}`}>
-            <button className="close-button" onClick={closeOverlay}>X</button>
-            <h2>Enter Verification Code From Email</h2>
-            <form onSubmit={checkVerification}>
-                <input
-                    type="text"
-                    className="verification-input"
-                    placeholder="Verification Code"
-                    value={verificationCode}
-                    onChange={(e) => setVerificationCode(e.target.value)}
-                />
-                <button type="submit" className="verification-button">Verify</button>
-            </form>
-            <p>{verificationErrorMessage}</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md">
+            <div className="bg-gray-900 rounded-xl shadow-2xl max-w-md w-full p-8 relative">
+                <button className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors" onClick={closeOverlay}>X</button>
+                <h2 className="text-3xl font-bold text-white mb-6 text-center">Enter Verification Code From Email</h2>
+                <form onSubmit={checkVerification}>
+                    <input
+                        type="text"
+                        className="w-full p-4 bg-gray-800 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-white outline-none"
+                        placeholder="Verification Code"
+                        value={verificationCode}
+                        onChange={(e) => setVerificationCode(e.target.value)}
+                    />
+                    <button type="submit" className="w-full py-4 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition-colors">Verify</button>
+                </form>
+                {verificationErrorMessage && (
+              <p className="text-red-400 text-center text-sm mt-2">
+                {verificationErrorMessage}
+              </p>
+                )}
+            </div>
         </div>
     )}
 
+    <div className="mt-2 text-center">
+        <p className='text-gray-400'>Already have an account?</p>
+        <button onClick={()=>setCurrentPage('login')} className="text-white hover:underline hover:text-gray-300 transition-colors">Switch to Login</button>
+    </div>
+</div>
 </div>
 );
     

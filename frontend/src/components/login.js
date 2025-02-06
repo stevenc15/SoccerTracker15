@@ -1,15 +1,17 @@
 import React, {useState} from 'react'; //react library
 import {Link, useNavigate} from 'react-router-dom'; //link and useNavigate to move to other page
-import {useUser} from './userContext';
+import {useApp} from './appContext';
 import EmailPopup from './EmailPopup';
 import CodePopup from './CodePopup';
 import ChangePasswordPopup from './ChangePasswordPopup';
 import './stylings/login.css'; 
 import {Box, Button, Typography} from '@mui/material';
 
+
 //login component
 function Login() {
     const [overlayActive, setOverlayActive] = useState(false); //check for usage, para permitir popups?
+    const {setCurrentPage} = useApp();
 
     //variables used throughout function definition
     var loginName; 
@@ -31,7 +33,7 @@ function Login() {
     const navigate = useNavigate();
 
     //usestate to change user id throughout application
-    const {setUserId} = useUser();
+    const {setUserId} = useApp();
 
     //message usestate
     const [message, setMessage] = useState('');
@@ -159,7 +161,8 @@ function Login() {
                 setMessage('Login successful');
 
                 //pass to home page
-                navigate('/home');
+                //navigate('/home');
+                setCurrentPage('home');
 
             }else if (response.status===400){
                 setMessage('Username does not exist');
@@ -177,32 +180,36 @@ function Login() {
 
     //make webpage
     return (
-        <div className='login-container2'>
-            
-            <div className={`overlay ${overlayActive ? 'active' : ''}`}></div>
-
-            {/* Login field, forgot password option */}
-            <form className="login-form" onSubmit={doLogin}>
+        <div>
+            {/* username input*/}
+            <form className="space-y-6" onSubmit={doLogin}>   
                 <input
                     type='text'
                     id='loginName'
                     placeholder='Enter Username'
                     ref={(c) =>(loginName=c)}
+                    className="w-full p-4 bg-gray-900 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-white outline-none"
                 />
+
+            {/* password input*/}
                 <input
                     type='password'
                     id='loginPassword'
                     placeholder='Enter Password'
                     ref={(c) =>(loginPassword=c)}
+                    className="w-full p-4 bg-gray-900 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-white outline-none"
                 />
-                <button type="submit">Enter</button>
+                <button className="w-full py-3 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition-colors mt-4" type="submit"> Enter </button>
             </form>
 
-            <Button className="forgot-password-button"  onClick={GenerateForgotPassword}>Forgot Password</Button>
+            
+        
+
+            <button className="text-white hover:underline mt-4 text-sm w-full text-center mb-2"  onClick={GenerateForgotPassword}>Forgot Password?</button>
             
             {/* email enter for forgot password code */}
             {showForgotPassword && (
-                <div className="popup-container">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md">
                     <EmailPopup
                     title='Enter Email'
                     onSubmit={CallResetPasswordEmail}
@@ -216,7 +223,7 @@ function Login() {
 
             {/* enter PR code */}
             {showEnterPRCode && (
-                <div className="popup-container">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md">
                     <CodePopup 
                     title="Enter Code" 
                     onSubmit={CallEnterPRCode} 
@@ -230,7 +237,7 @@ function Login() {
     
             {/* actual change password */}
             {showChangePassword && (
-                <div className="popup-container">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md">
                     <ChangePasswordPopup
                     title="Change Password"
                     onSubmit={CallChangePassword}
@@ -248,11 +255,13 @@ function Login() {
 
 
             {/* button to register page*/}
-            <Link to='/register'>
-                <Button className='register-button'>Don't have an account?</Button>
-            </Link>
-                {/* display message */}
-                <span className='message'>{message}</span>
+            <p className="text-center text-gray-400">
+                Don't have an account?
+                <button onClick={ () => setCurrentPage('register')} className="text-white hover:underline ml-2">Register</button>
+            </p>
+
+            {/* display message */}
+            <span className='message'>{message}</span>
 
             </div>
      

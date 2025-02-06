@@ -1,12 +1,12 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
-import {useUser} from './userContext';
-import './stylings/logout.css'
+import {useApp} from './appContext';
+//import './stylings/logout.css'
 import {Box, Button, Typography} from '@mui/material';
 
 function Logout(){
     const navigate = useNavigate();
-    const {setUserId} = useUser();
+    const {setUserId} = useApp();
 
     const handleLogout=()=>{
         setUserId(null);
@@ -15,7 +15,15 @@ function Logout(){
 
     return(
 
-        <button onClick={handleLogout} className='logout-button'>
+        <button onClick={handleLogout} className='
+        px-4 py-2 
+        bg-gray-800 
+        text-white 
+        rounded-lg 
+        hover:bg-gray-700 
+        transition-colors
+        mt-20
+      '>
             Logout
         </button>
     );

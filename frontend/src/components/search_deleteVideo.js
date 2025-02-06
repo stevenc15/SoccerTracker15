@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useUser} from './userContext';
+import {useUser} from './appContext';
 import {getCookie} from './cookieUtils';
 
 function SearchDeleteVideo (){
