@@ -1,6 +1,5 @@
 const { spawn } = require('child_process'); // Import the spawn function from the child_process module to execute Python scripts in a child process
 const path = require('path');
-const {getVideoFrames} = require('./video_utils');
 
 let wsClient=null;
 
@@ -9,12 +8,13 @@ const setWsClient = (client) => {
 };
 
 // Function to process the video, running a Python script and returning a promise for asynchronous handling
-const processVideo = (inputP, outputP, target_id) => { 
+const pick_p = (inputP, outputP) => { 
     return new Promise((resolve, reject) => { // Return a new promise for handling success or failure
         // Spawn a new child process to run the Python script
         const pythonPath = path.resolve(__dirname, './virtual_e/bin/python3.11'); // Absolute path to the Python interpreter
-        const scriptPath = path.resolve(__dirname, '../ML/track_players.py'); // Absolute path to the Python script
-        const process = spawn(pythonPath, [scriptPath, inputP, outputP, target_id]); // Run the Python interpreter, passing the path to the Python script and the input/output parameters
+        const scriptPath = path.resolve(__dirname, '../ML/pick_player.py'); // Absolute path to the Python script
+        //console.log(`Spawning process: ${pythonPath} ${scriptPath} ${inputP} ${outputP}`);
+        const process = spawn(pythonPath, [scriptPath, inputP, outputP]); // Run the Python interpreter, passing the path to the Python script and the input/output parameters
 
 
         // Listen to the 'data' event on stdout, which is the standard output stream from the Python script
@@ -44,4 +44,4 @@ const processVideo = (inputP, outputP, target_id) => {
     });
 };
 
-module.exports =  {processVideo, setWsClient} ; // Export the processVideo function to be used in other parts of the application
+module.exports =  {pick_p} ; // Export the processVideo function to be used in other parts of the application
