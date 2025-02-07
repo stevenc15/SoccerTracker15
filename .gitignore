@@ -2,8 +2,12 @@
 
 # dependencies
 /node_modules
+/frontend/node_modules
 /.pnp
 .pnp.js
+/backend/inputs
+/backend/Routes/outputs
+/backend/Routes/first_frame
 
 # testing
 /coverage
