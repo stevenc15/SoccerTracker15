@@ -2,7 +2,7 @@ import React from 'react';
 import Register from '../components/register';
 import { Link } from 'react-router-dom'; // Ensure you import Link from react-router-dom
 //import './stylings/RegisterPage.css'; // Import the CSS file for RegisterPage styles
-import squareLogo from './SquareLogo.png';
+//import squareLogo from './SquareLogo.png';
 
 const RegisterPage = () => {
 
