@@ -30,8 +30,9 @@ A machine-learning based tracking application that will track all 22 players fro
 ## Replicating the project
 Go over to the docker.README.md for replication instructions via docker
 
-run npm install create virtual environment: -navigate to Routes_help folder -python3 -m venv virtual_e
--source virtual_e/bin/activate -pip install -r ../v_e_utils/requirements_original.txt
+- run npm install 
+- create virtual environment: cd backend/Routes_help | python3.11 -m venv virtual_e
+-source virtual_e/bin/activate | pip install -r ../v_e_utils/requirements_original.txt
 
 start node app - npm start start backend server - navigate to backend folder, run node server.js
 
