@@ -41,6 +41,9 @@ app.use('/outputs', (req, res, next) => {
   });
 // Make files from the 'outputs' directory static
 app.use('/outputs', express.static(path.join(__dirname, 'Routes', 'outputs')));
+// Make files from the 'outputs' directory static
+app.use('/first_frame', express.static(path.join(__dirname, 'Routes', 'first_frame')));
+
 
 //make video endpoints available for use by server
 const videoRouter = require('./Routes/video');
@@ -48,6 +51,7 @@ app.use('/video', videoRouter);
 
 //make user endpoints available for use by server
 const userRouter = require('./Routes/users');
+const { setWsClient } = require('./Routes_help/videoProcessor');
 app.use('/users', userRouter);
 
 //define port

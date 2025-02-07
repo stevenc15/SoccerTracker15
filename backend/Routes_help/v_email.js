@@ -25,7 +25,7 @@ const sendVemail = (recipient_email, v_token)=>{
             console.log('verification email sent');
         }
 
-    });
+    }); 
 
 
 };
@@ -41,9 +41,9 @@ const send_completion_email = (recipient_email)=>{
     
     sender.sendMail(maildraft, (error)=>{
         if (error){
-            console.error('v email failed', error);
+            console.error('completion email failed', error);
         }else{
-            console.log('verification email sent');
+            console.log('completion email sent');
         }
 
     });
