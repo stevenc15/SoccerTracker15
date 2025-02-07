@@ -1,4 +1,4 @@
-import AboutImage from './AboutImage.png';
+//import AboutImage from './AboutImage.png';
 import ExampleImage from './exampleImage.png';
 import {useApp} from '../components/appContext.js'
 
