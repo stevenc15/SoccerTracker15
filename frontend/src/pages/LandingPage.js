@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 //import './stylings/LandingPage.css'; // Import the CSS file
-import originalImage from '../components/input_example.jpg';
-import transformedImage from '../components/output_example.jpg';
+//import originalImage from '../components/input_example.jpg';
+//import transformedImage from '../components/output_example.jpg';
 //import roundLogo from './Round-logo.png';
-import squareLogo from './SquareLogo.png';
+//import squareLogo from './SquareLogo.png';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {useApp} from '../components/appContext.js';
-import demoVideo from './demoVid.mp4';
+//import demoVideo from './demoVid.mp4';
 import exampleVideo from './Example.mp4';
 
 //Landing page contains just the app title and a button link to login page 

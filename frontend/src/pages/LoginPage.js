@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Login from '../components/login';
 //import './stylings/LoginPage.css'; // Import the CSS file
 import {Box, Button, Typography} from '@mui/material';
-import squareLogo from './SquareLogo.png';
+//import squareLogo from './SquareLogo.png';
 
 //log in title, and login component
 import {useLocation} from 'react-router-dom';
