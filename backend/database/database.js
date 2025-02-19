@@ -20,8 +20,7 @@ if(useCloud){
     });
 }else{
     console.log("not cloud");
-    sequelize=new Sequelize(process.env.MYSQL_PUBLIC_URL, process.env.MYSQLDATABASE, process.env.MYSQLUSER, process.env.MYSQLPASSWORD, {
-        host:process.env.MYSQLHOST,
+    sequelize=new Sequelize(process.env.MYSQL_PUBLIC_URL, {
         dialect:'mysql',
     });
 }
