@@ -6,7 +6,7 @@ import CodePopup from './CodePopup';
 import ChangePasswordPopup from './ChangePasswordPopup';
 import './stylings/login.css'; 
 import {Box, Button, Typography} from '@mui/material';
-
+const apiUrl = process.env.REACT_APP_API_URL;
 
 //login component
 function Login() {
@@ -61,7 +61,7 @@ function Login() {
     const CallResetPasswordEmail = async () => {
         try{
             //call endpoint
-            const response = await fetch('users/resetPasswordEmail', {
+            const response = await fetch(`${apiUrl}/users/resetPasswordEmail`, {
                 method: 'POST', 
                 body: JSON.stringify({email}),
                 headers: {'Content-Type': 'application/json'}
@@ -85,7 +85,7 @@ function Login() {
     const CallEnterPRCode = async () => {
         try{
             //call endpoint
-            const response = await fetch('users/enterResetCode', {
+            const response = await fetch(`${apiUrl}/users/enterResetCode`, {
                 method: 'POST',
                 body: JSON.stringify({code}),
                 headers: {'Content-Type': 'application/json'}
@@ -109,7 +109,7 @@ function Login() {
     const CallChangePassword = async () => {
         try{
             //call endpoint
-            const response = await fetch('users/changePassword', {
+            const response = await fetch(`${apiUrl}/users/changePassword`, {
                 method: 'POST',
                 body: JSON.stringify({username, newPassword: newPassword, confirmPassword:confirmPassword}),
                 headers: {'Content-Type': 'application/json'}
@@ -142,7 +142,7 @@ function Login() {
 
         try{
             //call endpoint
-            const response = await fetch('users/login', {
+            const response = await fetch(`${apiUrl}/users/login`, {
                 method: 'POST', 
                 body: js,
                 headers: {'Content-Type': 'application/json'}
