@@ -9,6 +9,7 @@ import Logout from '../components/logout';
 import {useApp} from '../components/appContext';
 import {getCookie} from '../components/cookieUtils';
 import {useNavigate} from 'react-router-dom';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const HomePage = () => {
     const [videoURL, setVideoURL] = useState(''); 
@@ -65,7 +66,7 @@ const [progress, setProgress] = useState(0);
 
     //send to endpoint aka backend
     try{
-    const response = await fetch('video/save_video', {
+    const response = await fetch(`${apiUrl}/video/save_video`, {
         method: 'POST',
         body:js,
         headers:{

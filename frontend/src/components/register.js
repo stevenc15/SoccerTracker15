@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 //import './stylings/register.css';
 import {useNavigate} from 'react-router-dom';
 import {useApp} from '../components/appContext.js';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const Register = () => {
 
@@ -58,7 +59,7 @@ const Register = () => {
             const js = JSON.stringify(obj)
 
             //send credentials to register endpoint
-            const response = await fetch('users/register', {
+            const response = await fetch(`${apiUrl}/users/register`, {
                 method: 'POST',
                 body: js,
                 headers: {
@@ -104,7 +105,7 @@ const Register = () => {
         try{
 
             //send credentials to end point
-            const response = await fetch('/users/verifyEmail', {
+            const response = await fetch(`${apiUrl}/users/verifyEmail`, {
                 method: 'POST',
                 body: js,
                 headers: {
