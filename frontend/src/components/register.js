@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 //import './stylings/register.css';
 import {useNavigate} from 'react-router-dom';
 import {useApp} from '../components/appContext.js';
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = 'https://soccertracker15-production.up.railway.app';
 
 console.log("API URL:", apiUrl);
 const Register = () => {
@@ -60,7 +60,7 @@ const Register = () => {
             const js = JSON.stringify(obj)
 
             //send credentials to register endpoint
-            const response = await fetch(`${apiUrl}/users/register`, {
+            const response = await fetch('apiUrl/users/register', {
                 method: 'POST',
                 body: js,
                 headers: {
