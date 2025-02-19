@@ -6,9 +6,6 @@ if (process.env.NODE_ENV!=='test'){
     
     dotenv.config({path:'./backend_details.env'}); //relative to server.js location 
 }
-else{
-    dotenv.config({path:'backend/backend_details.env'});//relative to root of project location
-}
 const useCloud = process.env.USE_CLOUD==='true';
 
 let sequelize;
@@ -22,8 +19,9 @@ if(useCloud){
         dialect:'mysql',
     });
 }else{
-    sequelize=new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-        host:process.env.DB_HOST,
+    console.log("not cloud");
+    sequelize=new Sequelize(process.env.MYSQL_PUBLIC_URL, process.env.MYSQLDATABASE, process.env.MYSQLUSER, process.env.MYSQLPASSWORD, {
+        host:process.env.MYSQLHOST,
         dialect:'mysql',
     });
 }
