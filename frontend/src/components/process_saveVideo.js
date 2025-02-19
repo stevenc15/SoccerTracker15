@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Upload from './Upload';
 import {useApp} from './appContext';
 import {getCookie} from './cookieUtils';
-import {Box, Button, Typography, CircularProgress} from '@mui/material';
+import {CircularProgress} from '@mui/material';
 //import './stylings/process_saveVideo.css';
 const apiUrl = process.env.REACT_APP_API_URL;
 
