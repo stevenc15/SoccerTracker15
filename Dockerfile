@@ -1,33 +1,60 @@
+# ============================
+# Stage 2: Setup Backend (Node.js)
+# ============================
 #Node.js base image
-FROM node:18-bullseye
-
-#python, pip, venv
-RUN apt-get update && \
-apt-get install -y python3 python3-pip python3-venv && \
-rm -rf /var/lib/apt/lists/*
+FROM node:18 AS backend-build
 
 #working directory for application
 WORKDIR /app
 
-#package.json and package-lock.json
-COPY package*.json ./
-RUN npm install
+#package.json
+COPY frontend/package.json ./
 
-#copy rest of code
-COPY . .
+#Install node js dependencies
+RUN npm install 
 
-#python virtual environment
-RUN python3 -m venv /app/venv
+#copy backend code 
+COPY backend ./
 
-# Copy .env file to the container
-COPY backend/backend_details.env /app/backend/backend_details.env
+#copy ml folder
+COPY backend/ML /app/ML
 
-#copy python dependencies
-COPY backend/v_e_utils/requirements.txt /app/backend/v_e_utils/requirements_original.txt
-RUN /app/venv/bin/pip install -r /app/backend/v_e_utils/requirements_original.txt
+#debug
+#RUN ls -R /app 
 
-#port
-EXPOSE 3001 5001
+# ============================
+# Stage 3: Setup Python Environment
+# ============================
+FROM python:3.11 AS python-env
+
+#set working directory
+WORKDIR /app
+
+COPY backend/v_e_utils/requirements_original.txt /app/v_e_utils/requirements_original.txt
+
+#install virtual environment
+RUN python -m venv /app/Routes_help/virtual_e
+
+#activate virtual environment and install dependencies
+RUN /app/Routes_help/virtual_e/bin/pip install -r /app/v_e_utils/requirements_original.txt
+
+# ============================
+# Stage 4: Final Image (Combining Everything)
+# ============================
+#combine node.js and python environments
+FROM node:18
+
+# Set working directory
+WORKDIR /app
+
+# Copy backend from backend-build stage
+COPY --from=backend-build /app .
+
+# Copy Python environment from python-env stage
+COPY --from=python-env /app/Routes_help/virtual_e /app/Routes_help/virtual_e
+
+#expose port in which backend server runs
+EXPOSE 5001 
 
 #start app
-CMD ["sh", "-c", "npm start & node backend/server.js"]
+CMD ["sh", "-c", "node server.js"]

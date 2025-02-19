@@ -1,24 +1,23 @@
 version: '3'
 services:
-  soccer-tracker-app:
+  backend:
     build: .
     ports:
-      - "3001:3001"
       - "5001:5001"
+    depends_on:
+      mysql:
+        condition: service_healthy
     environment:
       NODE_ENV: production
       DB_HOST: mysql
       DB_USER: dock-user
       DB_PASSWORD: dockPassword17
       DB_NAME: d_c_app_db
-    depends_on:
-      mysql:
-        condition: service_healthy
-  
-
+      DB_PORT: 3306
       
   mysql:
     image: mysql:latest
+    restart: always  
     environment:
       MYSQL_ROOT_PASSWORD: kikoCama15*
       MYSQL_USER: dock-user
