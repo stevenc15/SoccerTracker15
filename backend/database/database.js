@@ -9,10 +9,10 @@ if (process.env.NODE_ENV!=='test'){
 const useCloud = process.env.USE_CLOUD==='true';
 
 let sequelize;
-console.log(process.env.DB_USER);
-console.log(process.env.DB_NAME);
-console.log(process.env.DB_PASSWORD);
-console.log(process.env.DB_HOST);
+console.log(process.env.MYSQL_PUBLIC_URL);
+console.log(process.env.MYSQLDATABASE);
+console.log(process.env.MYSQLUSER);
+console.log(process.env.MYSQLPASSWORD);
 if(useCloud){
     sequelize=new Sequelize(process.env.CL_DB_NAME, process.env.CL_DB_USER, process.env.CL_DB_PASSWORD, {
         host:process.env.CL_DB_HOST,
