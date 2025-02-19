@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {useApp} from '../components/appContext.js';
 const apiUrl = process.env.REACT_APP_API_URL;
 
+console.log("API URL:", apiUrl);
 const Register = () => {
 
     //usestates for key variables
