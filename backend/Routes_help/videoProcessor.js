@@ -14,8 +14,8 @@ const processVideo = (inputP, outputP, target_id) => {
         // Spawn a new child process to run the Python script
         //const pythonPath = path.resolve(__dirname, './virtual_e/bin/python3.11'); // Absolute path to the Python interpreter
         //const scriptPath = path.resolve(__dirname, '../ML/track_players.py'); // Absolute path to the Python script
-        const pythonPath = "app/Routes_help/virtual_e/lib/python3.11";
-        const scriptPath = "app/ML/track_players.py";
+        const pythonPath = "/app/Routes_help/virtual_e/lib/python3.11";
+        const scriptPath = "/app/ML/track_players.py";
         const process = spawn(pythonPath, [scriptPath, inputP, outputP, target_id]); // Run the Python interpreter, passing the path to the Python script and the input/output parameters
 
 
