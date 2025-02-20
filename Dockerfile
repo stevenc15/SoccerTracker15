@@ -53,6 +53,9 @@ COPY --from=python-env /app/Routes_help/virtual_e /app/Routes_help/virtual_e
 #debug
 RUN ls -R /app 
 
+#permissions
+RUN chmod -R 755 /app/Routes_help/virtual_e
+
 #expose port in which backend server runs
 EXPOSE 5001 
 
