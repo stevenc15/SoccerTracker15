@@ -6,7 +6,7 @@ const apiUrl = 'https://soccertracker15-production.up.railway.app';
 
 console.log("API URL:", apiUrl);
 const Register = () => {
-
+ 
     //usestates for key variables
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -62,6 +62,7 @@ const Register = () => {
             //send credentials to register endpoint
             const response = await fetch(`${apiUrl}/users/register`, {
                 method: 'POST',
+                credentials: 'include', // If your API requires cookies/sessions
                 body: js,
                 headers: {
                     'Content-Type': 'application/json'
