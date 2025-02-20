@@ -26,6 +26,27 @@ async function InitializeDatabase(){
 
 InitializeDatabase();
 
+const corsOptions = {
+    origin: function (origin, callback) {
+        // Allow requests from localhost (development) and Vercel
+        const allowedOrigins = [
+            'https://trackmate-git-main-steven-camachos-projects.vercel.app',
+            'http://localhost:3001'  // Add this if you're testing locally
+        ];
+
+        // Allow any Vercel preview deployment
+        if (origin && (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app'))) {
+            callback(null, true);
+        } else {
+            console.log(`CORS Blocked: ${origin}`);
+            callback(new Error('CORS not allowed'));
+        }
+    },
+    methods: 'GET,POST',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+};
+/*
 // Define CORS options for cross port communication
 const corsOptions = {
     origin: '*',  // Replace with your frontend’s address
@@ -33,6 +54,7 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 };
+*/
 app.use(cors(corsOptions));
 
 app.use(express.json());
