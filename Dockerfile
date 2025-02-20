@@ -19,9 +19,6 @@ COPY backend ./
 #copy ml folder
 COPY backend/ML /app/ML
 
-#debug
-#RUN ls -R /app 
-
 # ============================
 # Stage 3: Setup Python Environment
 # ============================
@@ -52,6 +49,9 @@ COPY --from=backend-build /app .
 
 # Copy Python environment from python-env stage
 COPY --from=python-env /app/Routes_help/virtual_e /app/Routes_help/virtual_e
+
+#debug
+RUN ls -R /app 
 
 #expose port in which backend server runs
 EXPOSE 5001 
