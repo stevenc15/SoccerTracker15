@@ -31,7 +31,8 @@ const corsOptions = {
         // Allow requests from localhost (development) and Vercel
         const allowedOrigins = [
             'https://trackmate-git-main-steven-camachos-projects.vercel.app',
-            'http://localhost:3001'  // Add this if you're testing locally
+            'http://localhost:3001',  // Add this if you're testing locally
+            'https://www.trackmate.site'
         ];
 
         // Allow any Vercel preview deployment
