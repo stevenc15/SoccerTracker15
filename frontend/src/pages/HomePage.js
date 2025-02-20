@@ -9,7 +9,7 @@ import Logout from '../components/logout';
 import {useApp} from '../components/appContext';
 import {getCookie} from '../components/cookieUtils';
 import {useNavigate} from 'react-router-dom';
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = 'https://soccertracker15-production.up.railway.app';
 
 const HomePage = () => {
     const [videoURL, setVideoURL] = useState(''); 

@@ -4,7 +4,7 @@ import {useApp} from './appContext';
 import {getCookie} from './cookieUtils';
 import {CircularProgress} from '@mui/material';
 //import './stylings/process_saveVideo.css';
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = 'https://soccertracker15-production.up.railway.app';
 
 const Process_saveVideo = ({setVideoURL, videoURL, setOutputVideo, outputVideo}) =>{
   

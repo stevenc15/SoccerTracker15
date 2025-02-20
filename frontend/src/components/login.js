@@ -6,7 +6,7 @@ import CodePopup from './CodePopup';
 import ChangePasswordPopup from './ChangePasswordPopup';
 import './stylings/login.css'; 
 import {Box, Button, Typography} from '@mui/material';
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = 'https://soccertracker15-production.up.railway.app';
 
 //login component
 function Login() {
