@@ -28,7 +28,7 @@ InitializeDatabase();
 
 // Define CORS options for cross port communication
 const corsOptions = {
-    origin: 'https://trackmate-rdkiee34d-steven-camachos-projects.vercel.app', // Replace with your frontend’s address
+    origin: 'https://trackmate-git-main-steven-camachos-projects.vercel.app', // Replace with your frontend’s address
     methods: 'GET,POST',              // Specify the allowed HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
