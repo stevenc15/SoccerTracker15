@@ -62,7 +62,6 @@ const Register = () => {
             //send credentials to register endpoint
             const response = await fetch(`${apiUrl}/users/register`, {
                 method: 'POST',
-                credentials: 'include', // If your API requires cookies/sessions
                 body: js,
                 headers: {
                     'Content-Type': 'application/json'
