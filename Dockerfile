@@ -39,7 +39,7 @@ RUN /app/Routes_help/virtual_e/bin/pip install -r /app/v_e_utils/requirements_or
 # Stage 4: Final Image (Combining Everything)
 # ============================
 #combine node.js and python environments
-FROM node:18
+FROM mcr.microsoft.com/devcontainers/javascript-node:18-bookworm AS final
 
 # Set working directory
 WORKDIR /app
