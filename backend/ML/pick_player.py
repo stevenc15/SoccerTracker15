@@ -57,16 +57,14 @@ def pick_p(inputP, outputP):
     while True: 
         ret, frame = cap.read()
         if not ret: 
-            break
-        if frame is not None: 
-            print('frame grabbed')
-            sys.stdout.flush()    
+            break   
         frames.append(frame)
         
     cap.release()
     print('finished collecting frames ')
     sys.stdout.flush()
      
+    
     #process first frame
     first_frame = frames[0]
     if not first_frame:
