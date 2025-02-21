@@ -40,7 +40,7 @@ def pick_p(inputP, outputP):
     sys.stdout.flush()
     
     #open video file and get first frame
-    cap = cv2.VideoCapture(inputP) 
+    cap = cv2.VideoCapture(inputP, cv2.CAP_FFMPEG) 
     if cap.isOpened():
         print('Video opened successfully')
         sys.stdout.flush()
