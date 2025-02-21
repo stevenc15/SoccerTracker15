@@ -48,7 +48,7 @@ WORKDIR /app
 COPY --from=backend-build /app .
 
 # Copy Python environment from python-env stage
-COPY --from=python-env /app/Routes_help/virtual_e /app/Routes_help/virtual_e
+COPY --from=python-env /app /app
 
 #debug
 RUN ls -R /app 
