@@ -32,38 +32,51 @@ def pick_p(inputP, outputP):
     print(f"Arguments received: {sys.argv}")
     sys.stdout.flush()  # Flush to ensure visibility
     
-    print(inputP)
-    sys.stdout.flush()
     # Initialize tracker, given yolo model path
     model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'models/best.pt'))
     tracker = Tracker(model_path)
     tracker.model.conf=0.1
-
     print('Successfully grabbed model')
     sys.stdout.flush()
+    
     #open video file and get first frame
     cap = cv2.VideoCapture(inputP) 
-    
-    if cap:
-        print('video opened')
+    if cap.isOpened():
+        print('Video opened successfully')
         sys.stdout.flush()
+    else:
+        print('Failed to open video')
+        sys.stdout.flush()
+        return
     
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    print(f"Total Frames: {total_frames}")
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    print(f"Total Frames: {total_frames}, FPS: {fps}")
     sys.stdout.flush()
         
     #collect frames
-    frames = [] 
+    frames = []
+    frame_count = 0 
     while True: 
         ret, frame = cap.read()
-        if not ret: 
+        if not ret:
+            print(f"Stopped at frame {frame_count}/{total_frames} (ret=False)")
             break   
+        
+        if frame is None:
+            print(f"Frame {frame_count} is None, skipping...")
+            continue
+
         frames.append(frame)
+        frame_count += 1
+
+        # Debug every 50 frames
+        if frame_count % 50 == 0:
+            print(f"Processed {frame_count}/{total_frames} frames...")
         
     cap.release()
     print('finished collecting frames ')
     sys.stdout.flush()
-     
     
     #process first frame
     first_frame = frames[0]
