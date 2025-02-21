@@ -118,7 +118,7 @@ router.post('/gen_first_frame', verifyToken, input.single('video'), async(req, r
     }
 });
 
-router.post('/send_completion', verifyToken, async(req, res)=> {
+router.post('/send_completion', async(req, res)=> {
     try{
         const {userId} = req.body;
         const user = await User.findOne({where:{userId:userId}});
