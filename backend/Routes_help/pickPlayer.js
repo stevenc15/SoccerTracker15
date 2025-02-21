@@ -1,6 +1,6 @@
 const { spawn } = require('child_process'); // Import the spawn function from the child_process module to execute Python scripts in a child process
 const path = require('path');
-
+const fs = require("fs"); 
 let wsClient=null;
 
 const setWsClient = (client) => {
@@ -16,6 +16,13 @@ const pick_p = (inputP, outputP) => {
         //const scriptPath = path.resolve(__dirname, '../ML/pick_player.py'); // Absolute path to the Python script
         const pythonPath = "/app/Routes_help/virtual_e/bin/python3";
         const scriptPath = "/app/ML/pick_player.py";
+
+        // Debugging: Check if Python binary exists
+        if (!fs.existsSync(pythonPath)) {
+            console.error(`❌ Python binary not found at: ${pythonPath}`);
+            return reject("Python binary is missing.");
+        }
+        
         const process = spawn(pythonPath, [scriptPath, inputP, outputP]); // Run the Python interpreter, passing the path to the Python script and the input/output parameters
 
 
