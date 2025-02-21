@@ -32,7 +32,7 @@ def pick_p(inputP, outputP):
     print(f"Arguments received: {sys.argv}")
     sys.stdout.flush()  # Flush to ensure visibility
     
-    print(outputP)
+    print(inputP)
     sys.stdout.flush()
     # Initialize tracker, given yolo model path
     model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'models/best.pt'))
