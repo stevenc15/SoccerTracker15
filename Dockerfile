@@ -60,6 +60,8 @@ RUN chmod +x /app/Routes_help/virtual_e/bin/python3.11
 #permissions
 RUN chmod -R 755 /app/Routes_help/virtual_e
 
+RUN chmod 644 /app/backend/inputs
+
 #expose port in which backend server runs
 EXPOSE 5001 
 
