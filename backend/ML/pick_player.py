@@ -47,7 +47,15 @@ def pick_p(inputP, outputP):
     if cap:
         print('video opened')
         sys.stdout.flush()
+    
+    ret, frame = cap.read()
+    if ret: 
+        print('video opened2')
+        sys.stdout.flush()
         
+    if frame: 
+        print('video open3')
+        sys.stdout.flush()
     frames = [] 
         
     while True: 
