@@ -58,7 +58,7 @@ def pick_p(inputP, outputP):
         ret, frame = cap.read()
         if not ret: 
             break
-        if frame: 
+        if frame is not None: 
             print('frame grabbed')
             sys.stdout.flush()    
         frames.append(frame)
