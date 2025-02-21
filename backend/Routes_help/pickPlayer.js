@@ -17,12 +17,17 @@ const pick_p = (inputP, outputP) => {
         const pythonPath = "/app/Routes_help/virtual_e/bin/python3";
         const scriptPath = "/app/ML/pick_player.py";
 
+        if (!fs.existsSync("/app/Routes_help/virtual_e")) {
+            console.error("❌ Virtual environment directory does not exist!");
+            return reject("Virtual environment is missing.");
+        }
+
         // Debugging: Check if Python binary exists
         if (!fs.existsSync(pythonPath)) {
             console.error(`❌ Python binary not found at: ${pythonPath}`);
             return reject("Python binary is missing.");
         }
-        
+
         const process = spawn(pythonPath, [scriptPath, inputP, outputP]); // Run the Python interpreter, passing the path to the Python script and the input/output parameters
 
 
