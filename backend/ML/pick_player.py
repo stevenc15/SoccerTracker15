@@ -42,7 +42,7 @@ def pick_p(inputP, outputP):
     print('Successfully grabbed model')
     sys.stdout.flush()
     #open video file and get first frame
-    cap = cv2.VideoCapture(inputP, cv2.CAP_FFMPEG) 
+    cap = cv2.VideoCapture(inputP) 
     
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     print(f"Total Frames: {total_frames}")
