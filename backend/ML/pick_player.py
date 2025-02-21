@@ -50,7 +50,9 @@ def pick_p(inputP, outputP):
         ret, frame = cap.read()
         if not ret: 
             break
-        frames.append(frame)    
+        frames.append(frame)
+        print('frame grabbed')
+        sys.stdout.flush()    
     cap.release()
     print('grabbed video frames')
     sys.stdout.flush()
