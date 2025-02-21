@@ -44,6 +44,9 @@ FROM node:18
 # Set working directory
 WORKDIR /app
 
+# Install ffmpeg (which includes ffprobe)
+RUN apt-get update && apt-get install -y ffmpeg
+
 # Copy backend from backend-build stage
 COPY --from=backend-build /app .
 
