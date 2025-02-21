@@ -44,6 +44,9 @@ def pick_p(inputP, outputP):
     #open video file and get first frame
     cap = cv2.VideoCapture(inputP) 
     
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    print(f"Total Frames: {total_frames}")
+    sys.stdout.flush()
     if cap:
         print('video opened')
         sys.stdout.flush()
