@@ -81,7 +81,7 @@ router.post('/gen_first_frame', input.single('video'), async(req, res) => { //fi
     try{
         //add user id as parameter
         //define paths for input and output
-        const inputPath = `/app/backend/${req.file.path}`; //file path for input from input.single to req
+        const inputPath = req.file.path; //file path for input from input.single to req
         const outputPath = path.join(__dirname, 'first_frame', req.file.filename + '.png'); // Set the output path for the processed video file in the 'outputs' folder
         //const converted_outputPath = path.join(__dirname, 'first_frame', req.file.filename + 'CONV.mp4'); // Set the output path for the converted video file in the 'outputs' folder
 
