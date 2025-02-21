@@ -44,32 +44,29 @@ def pick_p(inputP, outputP):
     #open video file and get first frame
     cap = cv2.VideoCapture(inputP) 
     
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    print(f"Total Frames: {total_frames}")
-    sys.stdout.flush()
     if cap:
         print('video opened')
         sys.stdout.flush()
     
-    ret, frame = cap.read()
-    if ret: 
-        print('video opened2')
-        sys.stdout.flush()
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    print(f"Total Frames: {total_frames}")
+    sys.stdout.flush()
         
-    #if frame: 
-        #print('video open3')
-        #sys.stdout.flush()
+    #collect frames
     frames = [] 
-        
     while True: 
         ret, frame = cap.read()
         if not ret: 
             break
+        if frame: 
+            print('frame grabbed')
+            sys.stdout.flush()    
         frames.append(frame)
-        print('frame grabbed')
-        sys.stdout.flush()    
+        
     cap.release()
-    
+    print('finished collecting frames ')
+    sys.stdout.flush()
+     
     #process first frame
     first_frame = frames[0]
     if not first_frame:
