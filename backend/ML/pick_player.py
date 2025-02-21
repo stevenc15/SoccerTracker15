@@ -39,6 +39,8 @@ def pick_p(inputP, outputP):
     tracker = Tracker(model_path)
     tracker.model.conf=0.1
 
+    print('Successfully grabbed model')
+    sys.stdout.flush()
     #open video file and get first frame
     cap = cv2.VideoCapture(inputP) 
     
