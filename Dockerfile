@@ -45,7 +45,7 @@ FROM mcr.microsoft.com/devcontainers/javascript-node:18-bookworm AS final
 WORKDIR /app
 
 # Install system dependencies (Python + FFmpeg)
-RUN apt-get update && apt-get install -y ffmpeg python3.11 python3.11-venv python3.11-dev
+RUN apt-get update && apt-get install -y ffmpeg libsm6 libxext6 python3.11 python3.11-venv python3.11-dev
 
 # Copy backend from backend-build stage
 COPY --from=backend-build /app .
