@@ -16,7 +16,7 @@ const pick_p = (inputP, outputP) => {
         //const scriptPath = path.resolve(__dirname, '../ML/pick_player.py'); // Absolute path to the Python script
         const pythonPath = "/app/Routes_help/virtual_e/bin/python3.11";
         const scriptPath = "/app/ML/pick_player.py";
-        inputP=`/app/backend/${inputP}`
+        inputP=`/app/${inputP}`
         if (!fs.existsSync("/app/Routes_help/virtual_e/bin/normalizer")) {
             console.error("❌ Virtual environment executable does not exist!");
             return reject("Virtual environment is missing.");
