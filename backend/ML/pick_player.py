@@ -44,8 +44,12 @@ def pick_p(inputP, outputP):
     #open video file and get first frame
     cap = cv2.VideoCapture(inputP) 
     
+    if cap:
+        print('video opened')
+        sys.stdout.flush()
+        
     frames = [] 
-    
+        
     while True: 
         ret, frame = cap.read()
         if not ret: 
@@ -54,8 +58,7 @@ def pick_p(inputP, outputP):
         print('frame grabbed')
         sys.stdout.flush()    
     cap.release()
-    print('grabbed video frames')
-    sys.stdout.flush()
+    
     #process first frame
     first_frame = frames[0]
     frame_rgb=cv2.cvtColor(first_frame, cv2.COLOR_BGR2RGB)
