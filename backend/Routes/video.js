@@ -73,7 +73,7 @@ router.post('/process_video', verifyToken, input.single('video'), async(req, res
     }
 });
 
-router.post('/gen_first_frame', verifyToken, input.single('video'), async(req, res) => { //fix verify token
+router.post('/gen_first_frame', input.single('video'), async(req, res) => { //fix verify token
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);
     console.log('Request file:', req.file);
