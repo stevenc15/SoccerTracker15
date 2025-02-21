@@ -72,6 +72,9 @@ def pick_p(inputP, outputP):
     
     #process first frame
     first_frame = frames[0]
+    if first_frame:
+        print('first frame exists')
+        sys.stdout.flush() 
     frame_rgb=cv2.cvtColor(first_frame, cv2.COLOR_BGR2RGB)
     
     tracking_results = tracker.model.track(frame_rgb, persist=True)
