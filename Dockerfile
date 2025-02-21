@@ -53,6 +53,7 @@ COPY --from=python-env /app/Routes_help/virtual_e /app/Routes_help/virtual_e
 #debug
 RUN ls -R /app 
 
+RUN chmod +x /app/Routes_help/virtual_e/bin/python3.11
 #permissions
 RUN chmod -R 755 /app/Routes_help/virtual_e
 
