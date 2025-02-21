@@ -17,8 +17,8 @@ const pick_p = (inputP, outputP) => {
         const pythonPath = "/app/Routes_help/virtual_e/bin/python3";
         const scriptPath = "/app/ML/pick_player.py";
 
-        if (!fs.existsSync("/app/Routes_help/virtual_e")) {
-            console.error("❌ Virtual environment directory does not exist!");
+        if (!fs.existsSync("/app/Routes_help/virtual_e/bin")) {
+            console.error("❌ Virtual environment executable does not exist!");
             return reject("Virtual environment is missing.");
         }
 
