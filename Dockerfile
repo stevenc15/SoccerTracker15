@@ -30,7 +30,7 @@ WORKDIR /app
 COPY backend/v_e_utils/requirements_original.txt /app/v_e_utils/requirements_original.txt
 
 #install virtual environment
-RUN python -m venv /app/Routes_help/virtual_e
+RUN python -m venv /app/Routes_help/virtual_e --copies
 
 #activate virtual environment and install dependencies
 RUN /app/Routes_help/virtual_e/bin/pip install -r /app/v_e_utils/requirements_original.txt
