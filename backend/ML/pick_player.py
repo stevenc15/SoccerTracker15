@@ -52,13 +52,16 @@ def pick_p(inputP, outputP):
             break
         frames.append(frame)    
     cap.release()
-    
+    print('grabbed video frames')
+    sys.stdout.flush()
     #process first frame
     first_frame = frames[0]
     frame_rgb=cv2.cvtColor(first_frame, cv2.COLOR_BGR2RGB)
     
     tracking_results = tracker.model.track(frame_rgb, persist=True)
-
+    print('processed first frame for bounding boxes')
+    sys.stdout.flush()
+    
     #Collect information about detected objects (bounding box and ID)
     detections=[]
     
@@ -66,7 +69,9 @@ def pick_p(inputP, outputP):
         bbox=result.xyxy[0].cpu().numpy()
         obj_id=result.id.item()
         detections.append({'id': obj_id, 'bbox': bbox})
-        
+    
+    print('appending ids to bboxes')
+    sys.stdout.flush()
     for obj in detections: 
         cv2.rectangle(first_frame, 
                       (int(obj['bbox'][0]), int(obj['bbox'][1])), 
@@ -77,6 +82,9 @@ def pick_p(inputP, outputP):
                     (int(obj['bbox'][0]), int(obj['bbox'][1] - 10)),
                     cv2.FONT_HERSHEY_SIMPLEX, 
                     0.9, (255, 0, 0), 2)   
+    
+    print('drawing ids')
+    sys.stdout.flush()
     
     success=cv2.imwrite(outputP, first_frame)
     if not success:
