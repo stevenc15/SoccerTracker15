@@ -44,8 +44,8 @@ FROM mcr.microsoft.com/devcontainers/javascript-node:18-bookworm AS final
 # Set working directory
 WORKDIR /app
 
-# Install ffmpeg (which includes ffprobe)
-RUN apt-get update && apt-get install -y ffmpeg
+# Install system dependencies (Python + FFmpeg)
+RUN apt-get update && apt-get install -y ffmpeg python3.11 python3.11-venv python3.11-dev
 
 # Copy backend from backend-build stage
 COPY --from=backend-build /app .
@@ -54,7 +54,7 @@ COPY --from=backend-build /app .
 COPY --from=python-env /app /app
 
 #debug
-RUN ls -R /app 
+#RUN ls -R /app 
 
 RUN chmod +x /app/Routes_help/virtual_e/bin/python3.11
 #permissions
