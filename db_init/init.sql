@@ -1,6 +1,5 @@
--- Create the `User` table
 CREATE TABLE IF NOT EXISTS Users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
@@ -8,12 +7,11 @@ CREATE TABLE IF NOT EXISTS Users (
     isVerified BOOLEAN,
     passwordVtoken VARCHAR(255),
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create the `Video` table with a foreign key referencing the `User` table
 CREATE TABLE IF NOT EXISTS Videos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     userId INT NOT NULL,
     Url VARCHAR(255) NOT NULL,
     video_name VARCHAR(255) NOT NULL,
