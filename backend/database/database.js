@@ -1,4 +1,21 @@
 //all elements working=YES, includes the .env file
+const { Sequelize } = require('sequelize');
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV !== 'test') {
+    dotenv.config({ path: './backend_details.env' }); 
+}
+
+let sequelize;
+console.log(process.env.POSTGRES_URL);
+
+sequelize = new Sequelize(process.env.POSTGRES_URL, {
+    dialect: 'postgres',
+    logging: false,
+});
+
+module.exports = sequelize;
+/*
 const {Sequelize} = require('sequelize');
 
 const dotenv = require('dotenv');
@@ -26,3 +43,4 @@ if(useCloud){
 }
 
 module.exports= sequelize;
+*/
