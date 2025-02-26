@@ -1,5 +1,5 @@
 //all elements working=YES, includes the .env file
-const { Sequelize } = require('sequelize');
+/*const { Sequelize } = require('sequelize');
 const dotenv = require('dotenv');
 
 if (process.env.NODE_ENV !== 'test') {
@@ -15,7 +15,7 @@ sequelize = new Sequelize(process.env.POSTGRES_URL, {
 });
 
 module.exports = sequelize;
-/*
+*/
 const {Sequelize} = require('sequelize');
 
 const dotenv = require('dotenv');
@@ -43,4 +43,3 @@ if(useCloud){
 }
 
 module.exports= sequelize;
-*/
