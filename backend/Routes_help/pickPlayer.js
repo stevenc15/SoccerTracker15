@@ -12,15 +12,15 @@ const pick_p = (inputP, outputP) => {
     return new Promise((resolve, reject) => { // Return a new promise for handling success or failure
         
         // Spawn a new child process to run the Python script
-        //const pythonPath = path.resolve(__dirname, './virtual_e/bin/python3.11'); // Absolute path to the Python interpreter
-        //const scriptPath = path.resolve(__dirname, '../ML/pick_player.py'); // Absolute path to the Python script
-        const pythonPath = "/app/Routes_help/virtual_e/bin/python3.11";
-        const scriptPath = "/app/ML/pick_player.py";
+        const pythonPath = path.resolve(__dirname, './virtual_e/bin/python3.11'); // Absolute path to the Python interpreter
+        const scriptPath = path.resolve(__dirname, '../ML/pick_player.py'); // Absolute path to the Python script
+        //const pythonPath = "/app/Routes_help/virtual_e/bin/python3.11";
+        //const scriptPath = "/app/ML/pick_player.py";
         inputP=`/app/${inputP}`
-        if (!fs.existsSync("/app/Routes_help/virtual_e/bin/normalizer")) {
-            console.error("❌ Virtual environment executable does not exist!");
-            return reject("Virtual environment is missing.");
-        }
+        //if (!fs.existsSync("/app/Routes_help/virtual_e/bin/normalizer")) {
+            //console.error("❌ Virtual environment executable does not exist!");
+            //return reject("Virtual environment is missing.");
+        //}
 
         // Debugging: Check if Python binary exists
         if (!fs.existsSync(pythonPath)) {
