@@ -1,3 +1,4 @@
+
 //token verification es un PROBLEMA
 //all endpoints checked for, no major adjustments needed, but still could adjust
 const express = require('express');
