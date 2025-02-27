@@ -26,34 +26,11 @@ async function InitializeDatabase(){
 
 InitializeDatabase();
 
-const corsOptions = {
-    origin: function (origin, callback) {
-        // Allow requests from localhost (development) and Vercel
-        const allowedOrigins = [
-            'http://localhost:3001'
-        ];
-
-        // Allow any Vercel preview deployment
-        if (origin && (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app'))) {
-            callback(null, true);
-        } else {
-            console.log(`CORS Blocked: ${origin}`);
-            callback(new Error('CORS not allowed'));
-        }
-    },
-    methods: 'GET,POST',
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-};
-/*
 // Define CORS options for cross port communication
 const corsOptions = {
-    origin: '*',  // Replace with your frontend’s address
-    methods: 'GET,POST',              // Specify the allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
+    origin: 'http://localhost:3001', // Replace with your frontend’s address
+    methods: 'GET,POST'              // Specify the allowed HTTP methods
 };
-*/
 app.use(cors(corsOptions));
 
 app.use(express.json());

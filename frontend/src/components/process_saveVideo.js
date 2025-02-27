@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react';
 import Upload from './Upload';
 import {useApp} from './appContext';
 import {getCookie} from './cookieUtils';
-import {CircularProgress} from '@mui/material';
+import {Box, Button, Typography, CircularProgress} from '@mui/material';
 //import './stylings/process_saveVideo.css';
-const apiUrl = 'https://soccertracker15-production.up.railway.app';
 
 const Process_saveVideo = ({setVideoURL, videoURL, setOutputVideo, outputVideo}) =>{
   
@@ -57,7 +56,7 @@ const Process_saveVideo = ({setVideoURL, videoURL, setOutputVideo, outputVideo})
 
     const storedToken = getCookie('token');
     //CALL ENDPOINT
-    const response = await fetch(`video/process_video`, { 
+    const response = await fetch('video/process_video', { 
       method: 'POST', 
       body: formData, 
       headers: {
@@ -72,8 +71,8 @@ const Process_saveVideo = ({setVideoURL, videoURL, setOutputVideo, outputVideo})
       //const outputVideoURL = `http://localhost:5001/Routes/outputs/${filename}.mp4`//URL.createObjectURL(await response.blob()); 
       const data = await response.json();
       console.log('Processed video URL:',data.videoUrl);
-      setOutputVideo(`${apiUrl}/${data.videoUrl}`);
-      console.log('Output video set to:', `${apiUrl}/${data.videoUrl}`);
+      setOutputVideo(`http://localhost:5001${data.videoUrl}`);
+      console.log('Output video set to:', `http://localhost:5001${data.videoUrl}`);
     } else {
       setIsProcessing(false); 
       console.error('Error processing video'); 
@@ -96,7 +95,7 @@ const Process_saveVideo = ({setVideoURL, videoURL, setOutputVideo, outputVideo})
 
     const storedToken = getCookie('token');
     //CALL ENDPOINT
-    const response = await fetch(`video/gen_first_frame`, { 
+    const response = await fetch('video/gen_first_frame', { 
       method: 'POST', 
       body: formData, 
       headers: {
@@ -109,12 +108,12 @@ const Process_saveVideo = ({setVideoURL, videoURL, setOutputVideo, outputVideo})
 
     //CHECK FOR ERROR/PASS
     if (response.ok) { 
-      //const outputVideoURL = `${apiUrl}/Routes/outputs/${filename}.mp4`//URL.createObjectURL(await response.blob()); 
+      //const outputVideoURL = `http://localhost:5001/Routes/outputs/${filename}.mp4`//URL.createObjectURL(await response.blob()); 
       const data = await response.json();
       console.log('Processed first frame URL:',data.frameUrl);
-      setFirstFrame(`${apiUrl}/${data.frameUrl}`);
+      setFirstFrame(`http://localhost:5001${data.frameUrl}`);
 
-      console.log('Output video set to:', `${apiUrl}/${data.frameUrl}`);
+      console.log('Output video set to:', `http://localhost:5001${data.frameUrl}`);
     } else {
       //setIsProcessing(false); 
       const errorData = await response.text();
@@ -133,7 +132,7 @@ const Process_saveVideo = ({setVideoURL, videoURL, setOutputVideo, outputVideo})
 
     //send to endpoint aka backend
     try{
-    const response = await fetch(`video/send_completion`, {
+    const response = await fetch('video/send_completion', {
         method: 'POST',
         body:js,
         headers:{
