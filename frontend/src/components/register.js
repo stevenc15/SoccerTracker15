@@ -60,7 +60,7 @@ const Register = () => {
             const js = JSON.stringify(obj)
 
             //send credentials to register endpoint
-            const response = await fetch(`${apiUrl}/users/register`, {
+            const response = await fetch(`users/register`, {
                 method: 'POST',
                 body: js,
                 headers: {
@@ -106,7 +106,7 @@ const Register = () => {
         try{
 
             //send credentials to end point
-            const response = await fetch(`${apiUrl}/users/verifyEmail`, {
+            const response = await fetch(`users/verifyEmail`, {
                 method: 'POST',
                 body: js,
                 headers: {

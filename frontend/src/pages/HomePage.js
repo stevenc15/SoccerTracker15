@@ -66,7 +66,7 @@ const [progress, setProgress] = useState(0);
 
     //send to endpoint aka backend
     try{
-    const response = await fetch(`${apiUrl}/video/save_video`, {
+    const response = await fetch(`video/save_video`, {
         method: 'POST',
         body:js,
         headers:{

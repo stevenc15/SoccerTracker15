@@ -57,7 +57,7 @@ const Process_saveVideo = ({setVideoURL, videoURL, setOutputVideo, outputVideo})
 
     const storedToken = getCookie('token');
     //CALL ENDPOINT
-    const response = await fetch(`${apiUrl}/video/process_video`, { 
+    const response = await fetch(`video/process_video`, { 
       method: 'POST', 
       body: formData, 
       headers: {
@@ -96,7 +96,7 @@ const Process_saveVideo = ({setVideoURL, videoURL, setOutputVideo, outputVideo})
 
     const storedToken = getCookie('token');
     //CALL ENDPOINT
-    const response = await fetch(`${apiUrl}/video/gen_first_frame`, { 
+    const response = await fetch(`video/gen_first_frame`, { 
       method: 'POST', 
       body: formData, 
       headers: {
@@ -133,7 +133,7 @@ const Process_saveVideo = ({setVideoURL, videoURL, setOutputVideo, outputVideo})
 
     //send to endpoint aka backend
     try{
-    const response = await fetch(`${apiUrl}/video/send_completion`, {
+    const response = await fetch(`video/send_completion`, {
         method: 'POST',
         body:js,
         headers:{
