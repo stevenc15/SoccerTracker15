@@ -1,4 +1,4 @@
-# s-t-app
+# TrackMate
 A machine-learning based tracking application that will track all 22 players from a real-life soccer game, while also tracking the referees for visual differentiating purposes. The tracker performs best in tracking each team individually, putting identifiers specific to a players team and using said identifiers to calculate team possession.
 
 ## Table of Contents
@@ -49,9 +49,7 @@ start node app - npm start start backend server - navigate to backend folder, ru
 - Saved videos page available is cloud storage is enabled, check your saved videos
   
 ## Project Structure
-s-t-app/       
-├── Dockerfile
-├── README.md
+TrackMate/
 ├── backend
 │   ├── ML
 │   ├── Routes
@@ -67,27 +65,36 @@ s-t-app/
 │   └── v_e_utils
 ├── db_init
 │   └── init.sql
+├── frontend
+│   ├── frontEnd.env
+│   ├── inputs
+│   ├── node_modules
+│   ├── public
+│   └── src
+|       ├── App.css
+│       ├── App.js
+│       ├── Apptest.js
+│       ├── components
+│       ├── index.css
+│       ├── index.js
+│       ├── logo.svg
+│       ├── pages
+│       ├── reportWebVitals.js
+│       ├── setupTests.js
+|       ├── package-lock.json
+|       ├── package.json
+│       └── tailwind.config.js
+├── .dockerignore
+├── .gitattributes
 ├── docker-compose.yaml
 ├── docker.README.md
-├── frontEnd.env
-├── inputs
-├── node_modules
+├── Dockerfile
 ├── package-lock.json
 ├── package.json
-├── project_structure.txt
-├── public
-├── src
-│   ├── App.css
-│   ├── App.js
-│   ├── Apptest.js
-│   ├── components
-│   ├── index.css
-│   ├── index.js
-│   ├── logo.svg
-│   ├── pages
-│   ├── reportWebVitals.js
-│   └── setupTests.js
+├── README.md
 └── yolov8s.pt
+
+
 
 ## Development Process
 - **Backend**: Set up backend server using express, create user and video-related endpoints, initialize cloud storage and database creation leveraging Google Cloud Console and MySql,
