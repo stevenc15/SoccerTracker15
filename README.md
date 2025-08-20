@@ -46,6 +46,7 @@ A machine-learning based tracking application that will highlight a specific pla
 - In output preview window, observe how the player is highlighted for entirety of video
   
 ## Project Structure
+```bash
 TrackMate/
 ├── backend
 │   ├── ML
@@ -90,7 +91,7 @@ TrackMate/
 ├── package.json
 ├── README.md
 └── yolov8s.pt
-
+```
 
 
 ## Development Process
